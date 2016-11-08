@@ -1,4 +1,5 @@
-> Simple Example of Bot Framework on Azure Functions
+# Simple Example of Bot Framework on Azure Functions
 
-Setup... TBD
+> npm install
+>  
 
