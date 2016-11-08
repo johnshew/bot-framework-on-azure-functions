@@ -4,8 +4,10 @@ import {HttpContext, IFunctionRequest, HttpStatusCodes} from 'azure-functions-ty
 
 export function index(context: HttpContext, req: IFunctionRequest) {
     context.log('Running');
-    if(req.method == "GET")
-    context.res.status = HttpStatusCodes.OK;
-    context.done(null, {});
+    context.res = {
+            status: 200,
+            body: "Hello " 
+        };
+    context.done();
 }
 
