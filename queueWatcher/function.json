@@ -1,0 +1,22 @@
+{
+  "bindings": [
+    {
+      "name": "myQueueItem",
+      "type": "queueTrigger",
+      "direction": "in",
+      "queueName": "bot-queue",
+      "connection": ""
+    },
+    {
+      "type": "bot",
+      "name": "$return",
+      "direction": "out",
+      "botId": "testbot"
+    },
+    {
+      "type": "http",
+      "name": "res",
+      "direction": "out"
+    }
+  ]
+}
