@@ -5,9 +5,7 @@ var azure = require('azure-storage');
 var useEmulator = (process.env.NODE_ENV == 'development');
 var connector = useEmulator ? new builder.ChatConnector() : new botbuilder_azure.BotServiceConnector({
     appId: process.env['MicrosoftAppId'],
-    appPassword: process.env['MicrosoftAppPassword'],
-    stateEndpoint: process.env['BotStateEndpoint'],
-    openIdMetadata: process.env['BotOpenIdMetadata']
+    appPassword: process.env['MicrosoftAppPassword']
 });
 var bot = new builder.UniversalBot(connector);
 bot.on('trigger', function (message) {
@@ -45,27 +43,6 @@ bot.dialog('/', function (session) {
         }
         else {
             session.send('There was an error inserting your message into queue');
-        }
-    });
-});
-bot.dialog('/xyzzy-original', function (session) {
-    var queuedMessage = { address: session.message.address, text: session.message.text };
-    session.sendTyping();
-    var queueSvc = azure.createQueueService(process.env.AzureWebJobsStorage);
-    queueSvc.createQueueIfNotExists('bot-queue', function (err, result, response) {
-        if (!err) {
-            var queueMessageBuffer = new Buffer(JSON.stringify(queuedMessage)).toString('base64');
-            queueSvc.createMessage('bot-queue', queueMessageBuffer, function (err, result, response) {
-                if (!err) {
-                    session.send('Your message (\'' + session.message.text + '\') has been added to a queue, and it will be sent back to you via a Function');
-                }
-                else {
-                    session.send('There was an error inserting your message into queue');
-                }
-            });
-        }
-        else {
-            session.send('There was an error creating your queue');
         }
     });
 });
