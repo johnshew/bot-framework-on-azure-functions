@@ -5,9 +5,8 @@
   "main": "",
   "scripts": {
     "test": "node ./http-trigger/index.js",
-    "typings": "typings install",
     "build": "tsc",
-    "watch": "typings install & tsc -w"
+    "watch": "tsc -w"
   },
   "author": "johnshew@users.noreply.github.com",
   "repository": {
@@ -16,13 +15,16 @@
   },
   "license": "MIT",
   "dependencies": {
-    "azure-functions-typescript": "0.0.1",
+    "@types/node": "^6.0.53",
+    "azure-functions-typescript": "github:christopheranderson/azure-functions-typescript",
     "azure-storage": "^1.3.2",
     "botbuilder": "^3.4.2",
-    "botbuilder-azure": "0.0.1"
+    "botbuilder-azure": "^0.0.1"
   },
   "devDependencies": {
-    "typescript": "^2.0.0",
-    "typings": "^1.3.2"
+    "typescript": "^2.1.0"
+  },
+  "engines": {
+    "node": "^6.0.53"
   }
 }

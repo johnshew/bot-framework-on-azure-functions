@@ -1,8 +1,4 @@
-/*-----------------------------------------------------------------------------
-This template gets you started with a simple dialog that echoes back what the user said.
-To learn more please visit
-https://docs.botframework.com/en-us/node/builder/overview/
------------------------------------------------------------------------------*/
+
 "use strict";
 import builder = require("botbuilder");
 import botbuilder_azure = require("botbuilder-azure");
