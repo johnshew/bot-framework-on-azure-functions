@@ -12,7 +12,7 @@ bot.on('trigger', function (message) {
     var queuedMessage = message.value;
     var reply = new builder.Message()
         .address(queuedMessage.address)
-        .text('This is coming from the trigger: ' + queuedMessage.text + ' for user ' + queuedMessage.user.id);
+        .text('This is coming from the trigger: ' + queuedMessage.text);
     bot.send(reply);
 });
 function enqueue(qname, message, done) {
