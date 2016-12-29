@@ -19,7 +19,8 @@ export function index(context: Context, myQueueItem : any) {
 
     var message = {
         'text': myQueueItem.text,
-        'address': myQueueItem.address
+        'address': myQueueItem.address,
+        'user': myQueueItem.user
     };
 
     context.done(null, message);
