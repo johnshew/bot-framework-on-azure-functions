@@ -12,7 +12,7 @@ bot.on('trigger', function (message) {
     var queuedMessage = message.value;
     var reply = new builder.Message()
         .address(queuedMessage.address)
-        .text('This is coming from the trigger: ' + queuedMessage.text);
+        .text('This is coming from the trigger: ' + queuedMessage.text + ' for user ' + queuedMessage.user.id);
     bot.send(reply);
 });
 function enqueue(qname, message, done) {
@@ -35,7 +35,7 @@ function enqueue(qname, message, done) {
     });
 }
 bot.dialog('/', function (session) {
-    var queuedMessage = { address: session.message.address, text: session.message.text };
+    var queuedMessage = { address: session.message.address, text: session.message.text, user: session.message.user };
     session.sendTyping();
     enqueue('bot-queue', queuedMessage, function (err) {
         if (!err) {
