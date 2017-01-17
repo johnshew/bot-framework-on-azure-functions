@@ -22,6 +22,7 @@
     "botbuilder-azure": "^0.0.1"
   },
   "devDependencies": {
+    "restify": "^4.3.0",
     "typescript": "^2.1.0"
   },
   "engines": {

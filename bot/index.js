@@ -2,8 +2,9 @@
 var builder = require("botbuilder");
 var botbuilder_azure = require("botbuilder-azure");
 var azure = require("azure-storage");
-var useEmulator = (process.env.NODE_ENV == 'development');
-var connector = useEmulator ? new builder.ChatConnector() : new botbuilder_azure.BotServiceConnector({
+var devMode = (process.env.NODE_ENV == 'development');
+var chatConnector = false;
+var connector = devMode ? chatConnector ? new builder.ChatConnector() : new builder.ConsoleConnector() : new botbuilder_azure.BotServiceConnector({
     appId: process.env['MicrosoftAppId'],
     appPassword: process.env['MicrosoftAppPassword']
 });
@@ -46,13 +47,17 @@ bot.dialog('/', function (session) {
         }
     });
 });
-if (useEmulator) {
+if (devMode && chatConnector) {
     var restify = require('restify');
     var server = restify.createServer();
     server.listen(3978, function () {
-        console.log('test bot endpont at http://localhost:3978/api/messages');
+        console.log('test bot available at http://localhost:3978/api/messages');
     });
     server.post('/api/messages', connector.listen());
+}
+else if (devMode) {
+    console.log("Ready on console connector.");
+    connector.listen();
 }
 else {
     module.exports = { "default": connector.listen() };
