@@ -40,7 +40,7 @@ export function create (bot: builder.UniversalBot) {
     }
 
     // Handle message from user
-    bot.dialog('/', function (session) {
+    bot.dialog('queueBotDialog', function (session) {
         var queuedMessage = { address: session.message.address, text: session.message.text, user: session.message.user };
         // add message to queue
         session.sendTyping();

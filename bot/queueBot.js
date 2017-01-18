@@ -28,7 +28,7 @@ function create(bot) {
             }
         });
     }
-    bot.dialog('/', function (session) {
+    bot.dialog('queueBotDialog', function (session) {
         var queuedMessage = { address: session.message.address, text: session.message.text, user: session.message.user };
         session.sendTyping();
         enqueue('bot-queue', queuedMessage, function (err) {

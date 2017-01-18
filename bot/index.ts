@@ -16,7 +16,8 @@ let connector = devMode ? chatConnector ? new builder.ChatConnector() : new buil
     openIdMetadata: process.env['BotOpenIdMetadata'] */
 });
 
-var bot = new builder.UniversalBot(connector, builder.DialogAction.beginDialog('listBotDialog'));
+var bot = new builder.UniversalBot(connector);
+bot.dialog('/', (session, args, next) => { session.beginDialog('listBotDialog') });
 listBot.create(bot);
 
 bot.use({

@@ -8,7 +8,8 @@ var connector = devMode ? chatConnector ? new builder.ChatConnector() : new buil
     appId: process.env['MicrosoftAppId'],
     appPassword: process.env['MicrosoftAppPassword']
 });
-var bot = new builder.UniversalBot(connector, builder.DialogAction.beginDialog('listBotDialog'));
+var bot = new builder.UniversalBot(connector);
+bot.dialog('/', function (session, args, next) { session.beginDialog('listBotDialog'); });
 listBot.create(bot);
 bot.use({
     botbuilder: function (session, next) {
