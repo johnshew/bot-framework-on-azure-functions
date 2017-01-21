@@ -4,6 +4,18 @@ function create(bot) {
     bot.dialog('listBotDialog', function (session) {
         session.send('Welcome.  You can say make list, edit list, show list, or delete list');
     })
+        .triggerAction({
+        matches: /^(make a list|manage list)/i,
+        onSelectAction: function (session, args, next) {
+            console.log(args.action + " was selected");
+            next();
+        },
+        onInterrupted: function (session, dialogId, dialogArgs, next) {
+            var state = session.userData.listBotState;
+            console.log('Switching to ' + dialogId);
+            next();
+        }
+    })
         .beginDialogAction('editListAction', 'editListDialog', { matches: /^make\s?list|edit\s?list/i })
         .beginDialogAction('showListAction', 'showListDialog', { matches: /^show\s?list/i })
         .beginDialogAction('deleteListAction', 'deleteListDialog', { matches: /^delete\s?list/i });

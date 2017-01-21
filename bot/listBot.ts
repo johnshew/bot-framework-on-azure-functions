@@ -9,8 +9,20 @@ export function create(bot: builder.UniversalBot) {
     bot.dialog('listBotDialog',
         (session) => {
             session.send('Welcome.  You can say make list, edit list, show list, or delete list');
-        }
-    )
+        })
+        .triggerAction({
+            matches: /^(make a list|manage list)/i,
+            onSelectAction: (session, args, next) => {
+                console.log(args.action + " was selected");
+                next();
+            },
+            onInterrupted: (session, dialogId, dialogArgs, next) => {
+                // Save off any existing state
+                var state = session.userData.listBotState;
+                console.log('Switching to ' + dialogId)
+                next();
+            }
+        })
         .beginDialogAction('editListAction', 'editListDialog', { matches: /^make\s?list|edit\s?list/i })
         .beginDialogAction('showListAction', 'showListDialog', { matches: /^show\s?list/i })
         .beginDialogAction('deleteListAction', 'deleteListDialog', { matches: /^delete\s?list/i })
