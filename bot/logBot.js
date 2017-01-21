@@ -1,5 +1,7 @@
 "use strict";
-function create(bot) {
+var builder = require("botbuilder");
+var bot = new builder.UniversalBot(null, null, 'echoBot');
+function attach(bot) {
     bot.use({
         botbuilder: function (session, next) {
             if (/^logging on/i.test(session.message.text)) {
@@ -30,7 +32,7 @@ function create(bot) {
                 if (session.userData.isLogging) {
                     console.log('Message Received: ', session.message.text);
                     if (session.userData.showStack)
-                        console.log(session.dialogStack);
+                        console.log(session.dialogStack());
                     if (session.userData.showState)
                         console.log(session.sessionState.callstack[session.sessionState.callstack.length - 1].state);
                 }
@@ -39,5 +41,5 @@ function create(bot) {
         }
     });
 }
-exports.create = create;
+exports.attach = attach;
 //# sourceMappingURL=logBot.js.map

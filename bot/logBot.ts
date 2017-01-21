@@ -4,7 +4,10 @@ import builder = require("botbuilder");
 import botbuilder_azure = require("botbuilder-azure");
 import azure = require("azure-storage");
 
-export function create(bot: builder.UniversalBot) {
+var bot = new builder.UniversalBot(null, null, 'echoBot');
+
+export function attach(bot: builder.UniversalBot) {
+    // rootBot.library(bot.clone());
 
     bot.use({
         botbuilder: function (session, next) {
@@ -29,12 +32,12 @@ export function create(bot: builder.UniversalBot) {
             } else {
                 if (session.userData.isLogging) {
                     console.log('Message Received: ', session.message.text);
-                    if (session.userData.showStack) console.log(session.dialogStack);
+                    if (session.userData.showStack) console.log(session.dialogStack());
                     if (session.userData.showState) console.log(session.sessionState.callstack[session.sessionState.callstack.length - 1].state)
                 }
                 next();
             }
         }
     })
-}
 
+}

@@ -1,6 +1,10 @@
 "use strict";
 var builder = require("botbuilder");
 var bot = new builder.UniversalBot(null, null, 'echoBot');
+function attach(rootBot) {
+    rootBot.library(bot.clone());
+}
+exports.attach = attach;
 bot.dialog('echoBotDialog', [
     function (session) {
         builder.Prompts.text(session, 'Hi there.  Say something and I will echo it back.  Type "done" to exit.');
@@ -21,8 +25,4 @@ bot.dialog('echoBotDialog', [
         next();
     }
 }).cancelAction('cancelAction', 'Okay', { matches: /^done/i });
-function attach(rootBot) {
-    rootBot.library(bot.clone());
-}
-exports.attach = attach;
 //# sourceMappingURL=echoBot.js.map

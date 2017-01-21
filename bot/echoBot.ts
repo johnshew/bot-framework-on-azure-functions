@@ -6,6 +6,11 @@ import azure = require("azure-storage");
 
 var bot = new builder.UniversalBot(null, null, 'echoBot');
 
+export function attach(rootBot: builder.UniversalBot) {
+    rootBot.library(bot.clone());
+}
+
+
 bot.dialog('echoBotDialog', [
     (session) => {
         builder.Prompts.text(session, 'Hi there.  Say something and I will echo it back.  Type "done" to exit.');
@@ -28,6 +33,3 @@ bot.dialog('echoBotDialog', [
     }
 }).cancelAction('cancelAction', 'Okay', { matches: /^done/i })
 
-export function attach(rootBot: builder.UniversalBot) {
-    rootBot.library(bot.clone());
-}

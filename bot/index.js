@@ -11,9 +11,9 @@ var connector = devMode ? chatConnector ? new builder.ChatConnector() : new buil
     appPassword: process.env['MicrosoftAppPassword']
 });
 var bot = new builder.UniversalBot(connector);
-logBot.create(bot);
+logBot.attach(bot);
 echoBot.attach(bot);
-listBot.create(bot);
+listBot.attach(bot);
 bot.dialog('/', function (session, args, next) { session.send("How can I help?"); });
 if (devMode && chatConnector) {
     var restify = require('restify');

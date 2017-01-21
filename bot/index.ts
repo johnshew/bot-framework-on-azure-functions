@@ -19,9 +19,9 @@ let connector = devMode ? chatConnector ? new builder.ChatConnector() : new buil
 });
 
 var bot = new builder.UniversalBot(connector);
-logBot.create(bot);
+logBot.attach(bot);
 echoBot.attach(bot);
-listBot.create(bot);
+listBot.attach(bot);
 
 bot.dialog('/', (session, args, next) => { session.send("How can I help?") });
 
