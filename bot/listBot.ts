@@ -22,7 +22,7 @@ export function create(bot: builder.UniversalBot) {
                 console.log('Switching to ' + dialogId)
                 next();
             }
-        })
+        })        
         .beginDialogAction('editListAction', 'editListDialog', { matches: /^make\s?list|edit\s?list/i })
         .beginDialogAction('showListAction', 'showListDialog', { matches: /^show\s?list/i })
         .beginDialogAction('deleteListAction', 'deleteListDialog', { matches: /^delete\s?list/i })

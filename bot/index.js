@@ -1,7 +1,6 @@
 "use strict";
 var builder = require("botbuilder");
 var botbuilder_azure = require("botbuilder-azure");
-var queueBot = require("./queueBot");
 var listBot = require("./listBot");
 var logBot = require("./logBot");
 var echoBot = require("./echoBot");
@@ -12,10 +11,9 @@ var connector = devMode ? chatConnector ? new builder.ChatConnector() : new buil
     appPassword: process.env['MicrosoftAppPassword']
 });
 var bot = new builder.UniversalBot(connector);
-echoBot.create(bot);
-listBot.create(bot);
-queueBot.create(bot);
 logBot.create(bot);
+echoBot.attach(bot);
+listBot.create(bot);
 bot.dialog('/', function (session, args, next) { session.send("How can I help?"); });
 if (devMode && chatConnector) {
     var restify = require('restify');

@@ -3,7 +3,6 @@
 import builder = require("botbuilder");
 import botbuilder_azure = require("botbuilder-azure");
 import azure = require("azure-storage");
-import queueBot = require('./queueBot');
 import listBot = require('./listBot');
 import logBot = require('./logBot');
 import echoBot = require('./echoBot');
@@ -20,11 +19,9 @@ let connector = devMode ? chatConnector ? new builder.ChatConnector() : new buil
 });
 
 var bot = new builder.UniversalBot(connector);
-
-echoBot.create(bot);
-listBot.create(bot);
-queueBot.create(bot);
 logBot.create(bot);
+echoBot.attach(bot);
+listBot.create(bot);
 
 bot.dialog('/', (session, args, next) => { session.send("How can I help?") });
 

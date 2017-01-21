@@ -1,33 +1,28 @@
-
 "use strict";
-import builder = require("botbuilder");
-import botbuilder_azure = require("botbuilder-azure");
-import azure = require("azure-storage");
-
+var builder = require("botbuilder");
 var bot = new builder.UniversalBot(null, null, 'echoBot');
-
 bot.dialog('echoBotDialog', [
-    (session) => {
+    function (session) {
         builder.Prompts.text(session, 'Hi there.  Say something and I will echo it back.  Type "done" to exit.');
     },
-    (session, result) => {
+    function (session, result) {
         session.send("Heard you say " + session.message.text);
         session.replaceDialog('echoBotDialog');
     }
 ]).triggerAction({
     matches: /^echo/i,
-    onSelectAction: (session, args, next) => {
+    onSelectAction: function (session, args, next) {
         console.log(args.action + " was selected");
         next();
     },
-    onInterrupted: (session, dialogId, dialogArgs, next) => {
-        // Save off any existing state
+    onInterrupted: function (session, dialogId, dialogArgs, next) {
         var state = session.userData.listBotState;
-        console.log('Switching to ' + dialogId)
+        console.log('Switching to ' + dialogId);
         next();
     }
-}).cancelAction('cancelAction', 'Okay', { matches: /^done/i })
-
-export function attach(rootBot: builder.UniversalBot) {
+}).cancelAction('cancelAction', 'Okay', { matches: /^done/i });
+function attach(rootBot) {
     rootBot.library(bot.clone());
 }
+exports.attach = attach;
+//# sourceMappingURL=echoBot.js.map
