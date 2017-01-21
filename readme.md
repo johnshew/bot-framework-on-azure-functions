@@ -1,12 +1,28 @@
-# Simple Example of Bot Framework on Azure Functions
+# Compostite Bot on Azure Functions
+
+Example showing creation of a composite bot using the Bot Framework / botbuilder.
+
+The example can be run and debugged locally and it can be deployed to Azure Functions.
 
 ## Installation
 
-Do installation:
+Git clone this repo.  Then 
 
 > npm install
 
-Then modify node_modules/azure-functions-typescript/package.json to add "typings": "src/index.d.ts"
+> npm run build
 
-If you are using VSCode you might want to a windows : { "command" : ".\\node_modules\.bin\tsc" } item to task runner.
 
+## Notes
+
+* Until Chris and company release the next version of Azure Functions, you will need to manually modify node_modules/azure-functions-typescript/package.json to add:
+
+  > "typings": "src/index.d.ts",
+
+* If you are on Windows with VSCode you probably want to modify your task runner to include:
+
+  > windows : { "command" : ".\\node_modules\.bin\tsc" },
+
+* To run or debug locally set the NODE_ENV variable to "development".  On Windows:
+
+  > set NODE_ENV=development
