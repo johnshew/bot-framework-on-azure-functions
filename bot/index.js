@@ -1,6 +1,6 @@
 "use strict";
 var builder = require("botbuilder");
-var botbuilder_azure = require("botbuilder-azure");
+var botbuilder_azure = require("./botServiceConnector");
 var listBot = require("./listBot");
 var logBot = require("./logBot");
 var echoBot = require("./echoBot");

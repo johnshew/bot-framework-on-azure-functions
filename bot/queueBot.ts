@@ -44,6 +44,7 @@ function enqueue(qname: string, message: any, done: (err: string) => void) {
     });
 }
 
+
 // Handle message from user
 bot.dialog('queueBotDialog', function (session) {
     var queuedMessage = { address: session.message.address, text: session.message.text, user: session.message.user };

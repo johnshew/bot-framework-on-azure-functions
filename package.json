@@ -19,7 +19,7 @@
     "azure-functions-typescript": "github:christopheranderson/azure-functions-typescript",
     "azure-storage": "^1.3.2",
     "botbuilder": "^3.5.3",
-    "botbuilder-azure": "^0.0.1"
+    "botbuilder-azure": "0.0.1"
   },
   "devDependencies": {
     "restify": "^4.3.0",

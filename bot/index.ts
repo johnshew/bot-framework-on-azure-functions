@@ -1,7 +1,7 @@
 
 "use strict";
 import builder = require("botbuilder");
-import botbuilder_azure = require("botbuilder-azure");
+import botbuilder_azure = require("./botServiceConnector");
 import azure = require("azure-storage");
 import listBot = require('./listBot');
 import logBot = require('./logBot');

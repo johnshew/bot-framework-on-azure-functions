@@ -1,6 +1,6 @@
 "use strict";
 var builder = require("botbuilder");
-var bot = new builder.UniversalBot(null, null, 'echoBot');
+var bot = new builder.UniversalBot(null, null, 'listBot');
 function attach(rootBot) {
     rootBot.library(bot.clone());
 }
@@ -22,7 +22,8 @@ bot.dialog('listBotDialog', function (session) {
 })
     .beginDialogAction('editListAction', 'editListDialog', { matches: /^make\s?list|edit\s?list/i })
     .beginDialogAction('showListAction', 'showListDialog', { matches: /^show\s?list/i })
-    .beginDialogAction('deleteListAction', 'deleteListDialog', { matches: /^delete\s?list/i });
+    .beginDialogAction('deleteListAction', 'deleteListDialog', { matches: /^delete\s?list/i })
+    .endConversationAction('endConversationAction', 'Goodbye', { matches: /^(goodbye|done)/i });
 bot.dialog('editListDialog', function (session, results, next) {
     console.log('in editListDialog');
     if (!session.userData.list) {

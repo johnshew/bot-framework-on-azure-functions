@@ -4,7 +4,7 @@ import builder = require("botbuilder");
 import botbuilder_azure = require("botbuilder-azure");
 import azure = require("azure-storage");
 
-var bot = new builder.UniversalBot(null, null, 'echoBot');
+var bot = new builder.UniversalBot(null, null, 'listBot');
 
 export function attach(rootBot: builder.UniversalBot) {
     rootBot.library(bot.clone());
@@ -30,6 +30,8 @@ bot.dialog('listBotDialog',
     .beginDialogAction('editListAction', 'editListDialog', { matches: /^make\s?list|edit\s?list/i })
     .beginDialogAction('showListAction', 'showListDialog', { matches: /^show\s?list/i })
     .beginDialogAction('deleteListAction', 'deleteListDialog', { matches: /^delete\s?list/i })
+    .endConversationAction('endConversationAction', 'Goodbye', { matches: /^(goodbye|done)/i })
+    ;
 
 bot.dialog('editListDialog',
     (session, results, next) => {
