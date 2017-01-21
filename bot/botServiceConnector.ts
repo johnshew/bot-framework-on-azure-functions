@@ -13,7 +13,8 @@ export class BotServiceConnector extends builder.ChatConnector {
             _listen(req, {
                 send: function (status: number, body?: any): void {
                     if (context) {
-                        console.log = function () { context.log(arguments); }
+                        context.log('In listen');
+                        console.log = function () { context.log.apply(context,arguments); }
                         response.status = status;
                         if (body) {
                             response.body = body;

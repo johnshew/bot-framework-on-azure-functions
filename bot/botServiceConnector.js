@@ -17,7 +17,8 @@ var BotServiceConnector = (function (_super) {
             _listen(req, {
                 send: function (status, body) {
                     if (context) {
-                        console.log = function () { context.log(arguments); };
+                        context.log('In listen');
+                        console.log = function () { context.log.apply(context, arguments); };
                         response.status = status;
                         if (body) {
                             response.body = body;
