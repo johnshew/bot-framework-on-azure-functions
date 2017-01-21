@@ -4,7 +4,7 @@ import builder = require("botbuilder");
 import botbuilder_azure = require("botbuilder-azure");
 import azure = require("azure-storage");
 
-var bot = new builder.UniversalBot(null, null, 'listBot');
+var bot = new builder.UniversalBot(null, null, 'listBot ');
 
 export function attach(rootBot: builder.UniversalBot) {
     rootBot.library(bot.clone());

@@ -20,16 +20,16 @@ bot.dialog('echoBotDialog', [
         session.replaceDialog('echoBotDialog');
     }
 ]).triggerAction({
-    matches: /^echo/i,
-    onSelectAction: (session, args, next) => {
-        console.log(args.action + " was selected");
-        next();
-    },
-    onInterrupted: (session, dialogId, dialogArgs, next) => {
-        // Save off any existing state
-        var state = session.userData.listBotState;
-        console.log('Switching to ' + dialogId)
-        next();
-    }
-}).cancelAction('cancelAction', 'Okay', { matches: /^done/i })
+        matches: /^echo/i,
+        onSelectAction: (session, args, next) => {
+            console.log(args.action + " was selected");
+            next();
+        },
+        onInterrupted: (session, dialogId, dialogArgs, next) => {
+            // Save off any existing state
+            var state = session.userData.listBotState;
+            console.log('Switching to ' + dialogId)
+            next();
+        }
+    }).cancelAction('cancelAction', 'Okay', { matches: /^done/i })
 
