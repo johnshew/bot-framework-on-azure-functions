@@ -13,8 +13,7 @@ let chatConnector = (process.env.ChatClient == 'on');
 
 let connector = devMode ? chatConnector ? new builder.ChatConnector() : new builder.ConsoleConnector() : new botbuilder_azure.BotServiceConnector({
     appId: process.env['MicrosoftAppId'],
-    appPassword: process.env['MicrosoftAppPassword'],
-    captureConsoleLog : true
+    appPassword: process.env['MicrosoftAppPassword']
 /*  stateEndpoint: process.env['BotStateEndpoint'],
     openIdMetadata: process.env['BotOpenIdMetadata'] */
 });

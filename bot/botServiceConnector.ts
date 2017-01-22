@@ -15,7 +15,6 @@ export class BotServiceConnector extends builder.ChatConnector {
         return (context, req) => {
             var _context = context;
             if (_context) {
-                _context.log('botServiceConnector:listen');
                 console.log = function () {
                     if (_context) { _context.log.apply(_context, arguments); }
                 }
@@ -23,7 +22,6 @@ export class BotServiceConnector extends builder.ChatConnector {
             var response: IFunctionResponse = {};
             _listen(req, {
                 send: function (status: number, body?: any): void {
-                    console.log('In send');
                     if (context) {
                         response.status = status;
                         if (body) {
@@ -35,14 +33,12 @@ export class BotServiceConnector extends builder.ChatConnector {
                     }
                 },
                 status: function (val?: number): number {
-                    console.log('botServiceConnector:status');
                     if (typeof val === 'number') {
                         response.status = val;
                     }
                     return response.status || 200;
                 },
                 end: function () {
-                    console.log('botServiceConnector:end');
                     if (context) {
                         context.res = response;
                         context.done();

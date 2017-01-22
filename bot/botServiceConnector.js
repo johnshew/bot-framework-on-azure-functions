@@ -15,7 +15,6 @@ var BotServiceConnector = (function (_super) {
         return function (context, req) {
             var _context = context;
             if (_context) {
-                _context.log('botServiceConnector:listen');
                 console.log = function () {
                     if (_context) {
                         _context.log.apply(_context, arguments);
@@ -25,7 +24,6 @@ var BotServiceConnector = (function (_super) {
             var response = {};
             _listen(req, {
                 send: function (status, body) {
-                    console.log('In send');
                     if (context) {
                         response.status = status;
                         if (body) {
@@ -37,14 +35,12 @@ var BotServiceConnector = (function (_super) {
                     }
                 },
                 status: function (val) {
-                    console.log('botServiceConnector:status');
                     if (typeof val === 'number') {
                         response.status = val;
                     }
                     return response.status || 200;
                 },
                 end: function () {
-                    console.log('botServiceConnector:end');
                     if (context) {
                         context.res = response;
                         context.done();
