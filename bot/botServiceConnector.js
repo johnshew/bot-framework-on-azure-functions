@@ -13,10 +13,11 @@ var BotServiceConnector = (function (_super) {
     BotServiceConnector.prototype.listen = function () {
         var _listen = _super.prototype.listen.call(this);
         return function (context, req) {
-            if (context) {
-                context.log('botServiceConnector:listen');
+            var _context = context;
+            if (_context) {
+                _context.log('botServiceConnector:listen');
                 console.log = function () {
-                    context.log.apply(context, arguments);
+                    _context.log.apply(_context, arguments);
                 };
             }
             var response = {};

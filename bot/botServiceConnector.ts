@@ -1,18 +1,23 @@
 
 import * as builder from 'botbuilder';
 
+export interface IBotServiceConnectorSettings extends builder.IChatConnectorSettings {
+    captureConsoleLog? : boolean;
+}
+
 export class BotServiceConnector extends builder.ChatConnector {
-    constructor(settings?: builder.IChatConnectorSettings) {
+    constructor(settings?: IBotServiceConnectorSettings) {
         super(settings);
     }
 
     public listen(): (context: any, req: any) => void {
         var _listen = super.listen();
         return (context, req) => {
-            if (context) {
-                context.log('botServiceConnector:listen');
+            var _context = context;
+            if (_context) {
+                _context.log('botServiceConnector:listen');
                 console.log = function () {
-                    context.log.apply(context, arguments);
+                    _context.log.apply(_context, arguments);
                 }
             }
             var response: IFunctionResponse = {};

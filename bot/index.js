@@ -8,7 +8,8 @@ var devMode = (process.env.NODE_ENV == 'development');
 var chatConnector = (process.env.ChatClient == 'on');
 var connector = devMode ? chatConnector ? new builder.ChatConnector() : new builder.ConsoleConnector() : new botbuilder_azure.BotServiceConnector({
     appId: process.env['MicrosoftAppId'],
-    appPassword: process.env['MicrosoftAppPassword']
+    appPassword: process.env['MicrosoftAppPassword'],
+    captureConsoleLog: true
 });
 var bot = new builder.UniversalBot(connector);
 logBot.attach(bot);
