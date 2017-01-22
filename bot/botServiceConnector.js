@@ -13,15 +13,16 @@ var BotServiceConnector = (function (_super) {
     BotServiceConnector.prototype.listen = function () {
         var _listen = _super.prototype.listen.call(this);
         return function (context, req) {
-            var response = {};
             if (context) {
-                context.log('In listen');
+                context.log('botServiceConnector:listen');
                 console.log = function () {
                     context.log.apply(context, arguments);
                 };
             }
+            var response = {};
             _listen(req, {
                 send: function (status, body) {
+                    console.log('In send');
                     if (context) {
                         response.status = status;
                         if (body) {
@@ -33,12 +34,14 @@ var BotServiceConnector = (function (_super) {
                     }
                 },
                 status: function (val) {
+                    console.log('botServiceConnector:status');
                     if (typeof val === 'number') {
                         response.status = val;
                     }
                     return response.status || 200;
                 },
                 end: function () {
+                    console.log('botServiceConnector:end');
                     if (context) {
                         context.res = response;
                         context.done();

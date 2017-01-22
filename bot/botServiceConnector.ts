@@ -9,15 +9,16 @@ export class BotServiceConnector extends builder.ChatConnector {
     public listen(): (context: any, req: any) => void {
         var _listen = super.listen();
         return (context, req) => {
-            var response: IFunctionResponse = {};
             if (context) {
-                context.log('In listen');
+                context.log('botServiceConnector:listen');
                 console.log = function () {
                     context.log.apply(context, arguments);
                 }
             }
+            var response: IFunctionResponse = {};
             _listen(req, {
                 send: function (status: number, body?: any): void {
+                    console.log('In send');
                     if (context) {
                         response.status = status;
                         if (body) {
@@ -29,12 +30,14 @@ export class BotServiceConnector extends builder.ChatConnector {
                     }
                 },
                 status: function (val?: number): number {
+                    console.log('botServiceConnector:status');
                     if (typeof val === 'number') {
                         response.status = val;
                     }
                     return response.status || 200;
                 },
                 end: function () {
+                    console.log('botServiceConnector:end');
                     if (context) {
                         context.res = response;
                         context.done();
