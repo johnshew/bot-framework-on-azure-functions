@@ -1,6 +1,6 @@
 "use strict";
 var builder = require("botbuilder");
-var bot = new builder.UniversalBot(null, null, 'listBot ');
+var bot = new builder.UniversalBot(null, null, 'listBot');
 function attach(rootBot) {
     rootBot.library(bot.clone());
 }
