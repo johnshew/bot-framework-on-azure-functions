@@ -14,11 +14,15 @@ var BotServiceConnector = (function (_super) {
         var _listen = _super.prototype.listen.call(this);
         return function (context, req) {
             var response = {};
+            if (context) {
+                context.log('In listen');
+                console.log = function () {
+                    context.log.apply(context, arguments);
+                };
+            }
             _listen(req, {
                 send: function (status, body) {
                     if (context) {
-                        context.log('In listen');
-                        console.log = function () { context.log.apply(context, arguments); };
                         response.status = status;
                         if (body) {
                             response.body = body;

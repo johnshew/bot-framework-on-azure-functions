@@ -10,11 +10,15 @@ export class BotServiceConnector extends builder.ChatConnector {
         var _listen = super.listen();
         return (context, req) => {
             var response: IFunctionResponse = {};
+            if (context) {
+                context.log('In listen');
+                console.log = function () {
+                    context.log.apply(context, arguments);
+                }
+            }
             _listen(req, {
                 send: function (status: number, body?: any): void {
                     if (context) {
-                        context.log('In listen');
-                        console.log = function () { context.log.apply(context,arguments); }
                         response.status = status;
                         if (body) {
                             response.body = body;
@@ -41,6 +45,7 @@ export class BotServiceConnector extends builder.ChatConnector {
         };
     }
 }
+
 
 interface IFunctionResponse {
     status?: number;
