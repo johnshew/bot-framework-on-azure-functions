@@ -17,7 +17,9 @@ var BotServiceConnector = (function (_super) {
             if (_context) {
                 _context.log('botServiceConnector:listen');
                 console.log = function () {
-                    _context.log.apply(_context, arguments);
+                    if (_context) {
+                        _context.log.apply(_context, arguments);
+                    }
                 };
             }
             var response = {};
