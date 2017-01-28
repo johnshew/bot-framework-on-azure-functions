@@ -1,8 +1,8 @@
-# Compostite Bot on Azure Functions
+# Composite Bot on Azure Functions
 
 Example showing creation of a composite bot using the Bot Framework / botbuilder.
 
-The example can be run and debugged locally and it can be deployed to Azure Functions.
+Using this approach it is easy to run and debug the bot locally - and it supports continous deployment to Azure Functions.
 
 ## Installation
 
